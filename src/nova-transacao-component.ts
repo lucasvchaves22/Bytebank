@@ -1,11 +1,3 @@
-let saldo = 3000;
-
-
-const elementoSaldo = document.querySelector(".saldo-valor .valor") as HTMLElement;
-if (elementoSaldo != null) {
-    elementoSaldo.textContent = saldo.toString();
-}
-
 const elementoFormulario = document.querySelector(".block-nova-transacao form") as HTMLFormElement;
 elementoFormulario.addEventListener("submit", function(event) {
     event.preventDefault(); //previne que a página seja recarregada assim que der o submit no form
@@ -43,4 +35,5 @@ elementoFormulario.addEventListener("submit", function(event) {
     elementoFormulario.reset();
 
 });
+
 
