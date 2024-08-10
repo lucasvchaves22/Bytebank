@@ -1,3 +1,7 @@
+import { formatarMoeda } from "../utils/formaters.js";
+import { Transacao } from "../types/Transacao.js";
+import { TipoTransacao } from "../types/TipoTransacao.js";
+
 const elementoFormulario = document.querySelector(".block-nova-transacao form") as HTMLFormElement;
 elementoFormulario.addEventListener("submit", function(event) {
     event.preventDefault(); //previne que a página seja recarregada assim que der o submit no form
