@@ -1,6 +1,7 @@
 import Conta from "../types/conta.js";
 import { FormatoData } from "../types/FormatoData.js";
 import { formatarMoeda, formatarData } from "../utils/formaters.js";
+import { TipoTransacao } from "../types/TipoTransacao.js";
 const elementoRegistroTransacoesExtrato = document.querySelector(".extrato .registro-transacoes");
 renderizarExtrato();
 function renderizarExtrato() {
@@ -10,19 +11,32 @@ function renderizarExtrato() {
     for (let grupoTransacao of gruposTransacoes) {
         let htmlTransacaoItem = "";
         for (let transacao of grupoTransacao.transacoes) {
-            htmlTransacaoItem += `
+            if (transacao.tipoTransacao == TipoTransacao.TRANSFERENCIA || transacao.tipoTransacao == TipoTransacao.PAGAMENTO_BOLETO) {
+                htmlTransacaoItem += `
                 <div class="transacao-item">
                     <div class="transacao-info">
                             <span class="tipo">${transacao.tipoTransacao}</span>
-                            <strong class="valor">${formatarMoeda(transacao.valor)}</strong>
+                            <strong class="valor" style="color: red">${formatarMoeda(transacao.valor)}</strong>
                     </div>
                     <time class="data">${formatarData(transacao.data, FormatoData.DIA_MES)}</time>
                 </div>
             `;
+            }
+            else if (transacao.tipoTransacao == TipoTransacao.DEPOSITO) {
+                htmlTransacaoItem += `
+                <div class="transacao-item">
+                    <div class="transacao-info">
+                            <span class="tipo">${transacao.tipoTransacao}</span>
+                            <strong class="valor" style="color: green">${formatarMoeda(transacao.valor)}</strong>
+                    </div>
+                    <time class="data">${formatarData(transacao.data, FormatoData.DIA_MES)}</time>
+                </div>
+            `;
+            }
         }
         htmlRegistroTransacoes += `
             <div class="transacoes-group">
-                <strong class="mes-group">${grupoTransacao.label}</strong>
+                <strong class="mes-group" style="color: black">${grupoTransacao.label}</strong>
                 ${htmlTransacaoItem}
             </div>
         `;
