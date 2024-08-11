@@ -7,7 +7,7 @@ const elementoRegistroTransacoesExtrato: HTMLElement = document.querySelector(".
 
 renderizarExtrato();
 function renderizarExtrato(): void {
-    const gruposTransacoes:GrupoTransacao[] = Conta.getGruposTransacoes();
+    const gruposTransacoes: GrupoTransacao[] = Conta.getGruposTransacoes();
     elementoRegistroTransacoesExtrato.innerHTML = "";
     let htmlRegistroTransacoes: string = "";
 
@@ -41,3 +41,11 @@ function renderizarExtrato(): void {
 
     elementoRegistroTransacoesExtrato.innerHTML = htmlRegistroTransacoes;
 }
+
+const ExtratoComponent = {
+    atualizar(): void {
+        renderizarExtrato();
+    }
+}
+
+export default ExtratoComponent;

@@ -13,7 +13,7 @@ function debitar(valor) {
     if (valor > saldo) {
         throw new Error("Saldo insuficiente!");
     }
-    saldo - +valor;
+    saldo -= valor;
     localStorage.setItem("saldo", saldo.toString());
 }
 function depositar(valor) {
@@ -55,6 +55,7 @@ const Conta = {
         }
         else if (novaTransacao.tipoTransacao == TipoTransacao.TRANSFERENCIA || novaTransacao.tipoTransacao == TipoTransacao.PAGAMENTO_BOLETO) {
             debitar(novaTransacao.valor);
+            novaTransacao.valor *= -1;
         }
         else {
             throw new Error("Tipo de Transação é inválido!");
